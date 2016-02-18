@@ -55,3 +55,5 @@
   return l;
 3。Search element in rotated array.（with/out duplicates）(need to learn!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
   https://leetcode.com/discuss/223/when-there-are-duplicates-the-worst-case-is-could-we-do-better
+4。Find Minimum in Rotated Sorted Array II
+  https://leetcode.com/submissions/detail/49312664/
