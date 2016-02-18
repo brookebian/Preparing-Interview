@@ -1,0 +1,9 @@
+How HashMap Work?
+
+HashMap works as a table(array of Entry(key-value) or LinkedList<Entry>). 
+
+hash(key.hashCode()) to form a hashcode for key and use that hash to find the index inside of the table
+
+if the index already has some Entry && key duplicated ---> replace the value
+
+if the index already has some Entry && not key duplicated ---> put Entry in next of previous one (LinkedList)
