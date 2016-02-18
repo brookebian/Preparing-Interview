@@ -53,3 +53,5 @@
   }
   if(nums[r] <= target) return r;
   return l;
+3。Search element in rotated array.（with/out duplicates）(need to learn!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
+  https://leetcode.com/discuss/223/when-there-are-duplicates-the-worst-case-is-could-we-do-better
