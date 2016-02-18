@@ -1,0 +1,55 @@
+1. Ceiling, find the position that is bigger or equal to target
+  //find the position in array that is bigger or equal to target
+  //thus I will move the pointer whenever the target is bigger or equal to target to find the first one
+  1>
+  while(lo <= hi){
+    int mid = lo +(hi-lo)/2;
+    if(nums[mid] >= target) hi = mid;
+    else lo = mid+1;
+  }
+  return nums[lo];
+  Wrong
+  //out the loop lo>hi, just compare the nums[lo] with target
+  //but this implementation has a problem, when lo == hi,-->lo=mid=hi if(nums[lo]>=target) it's dead loop
+  2>
+  while(lo < hi){
+    int mid = lo +(hi-lo)/2;
+    if(nums[mid] >= target) hi = mid;
+    else lo = mid+1;
+  }
+  //out side for loop lo==hi
+  //need to compare nums[lo] with target
+  if(nums[lo] > target) return lo;
+  return lo+1;
+  //use lo < hi as condition is ok. when lo+1==hi, mid = lo. It will not cause dead loop for only hi can be mid, lo will be mid+1
+  
+  3>
+  //find the position in array that is bigger or equal to target
+  //thus I will move the pointer whenever the target is bigger or equal to target to find the first one
+  int size = nums.length;
+  if(size ==0 )return 0;
+  int l  = 0, r = size-1;
+  while(r-l > 1){
+      int m = l +(r-l)/2;
+      if(nums[m] >= target)
+          r = m;
+      else
+          l = m;
+  }
+  if(nums[l] >= target) return l;
+  if(nums[r] >= target) return r;
+  return r+1;
+2. floor: find the biggest element position that is smaller or equal to target
+  // move left pointer when nums[mid] is smaller or equal to target
+  
+  //if nums[0] > target deal with this !
+  int l  = 0, r = size-1;
+  while(r-l > 1){
+      int m = l +(r-l)/2;
+      if(nums[m] <= target)
+          l = m;
+      else
+          r = m;
+  }
+  if(nums[r] <= target) return r;
+  return l;
