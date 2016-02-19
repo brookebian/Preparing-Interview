@@ -1,5 +1,86 @@
-
-
+1.Merge Sort
+  mergesort(A,lo,hi){
+    if(lo>=hi) return;
+    int mid = lo + (hi-lo)/2;
+    mergesort(A,lo,mid);
+    mergesort(A,mid+1,hi);
+    merge(A,new int[n],lo,mid,hi)
+  }
+  merge(){
+    //copy to aux
+    int i = lo, j = mid+1;
+    while(int k = lo; k <=hi; k++){
+       if (i > mid) a[k] = aux[j++];
+       else if (j > hi) a[k] = aux[i++];
+       else if (less(aux[j], aux[i])) a[k] = aux[j++];
+       else a[k] = aux[i++];
+    }
+  }
+  1.2Bottom-up mergesort(practice https://leetcode.com/problems/insertion-sort-list/)
+   public static void sort(Comparable[] a)
+   {
+   int N = a.length;
+   Comparable[] aux = new Comparable[N];
+   for (int sz = 1; sz < N; sz = sz+sz)
+     for (int lo = 0; lo < N-sz; lo += sz+sz)
+     merge(a, aux, lo, lo+sz-1, Math.min(lo+sz+sz-1, N-1));
+     }
+2> Quick Sort
+  1> no dups
+  sort(A,int lo, int hi){
+    if(lo < hi) return;
+    int j = partition(A,lo,hi);
+    sort(A,lo,j-1);
+    sort(A,j+1,hi);
+  }
+  paritition(A,int lo, int hi){
+    int p = A[lo];
+    int i = ++lo, j = hi;
+    while(true){
+      while(i <= j && A[i] < p) i ++;
+      while(i <= j && A[j] > p) j--;
+      if(i > j) break;
+      exch(A,i,j);
+    }
+    exch(A,lo,j);//j is point to the one step smaller than the ones that bigger or equal to p 
+    return j;
+  }
+  2> select
+  select(A,int k){
+  //because it only look at lo or hi part once , can use a loop
+  while(lo <= hi){
+    int j = partition(A,lo,hi);
+    if(j == k) return A[k];
+    else  if(j > k) hi = j-1;
+    else lo = j+1; 
+  }
+  }
+  3> dups
+  3-way partitioning
+  lt//less, i, gt//greater
+     sort(A,int lo, int hi){
+    if(lo < hi) return;
+    int lt = lo, gt = hi, i = lo;
+    while(i <= gt){
+      int cmp = compare(A[i],p);
+      if(cmp < 0) exch(A,i++,lt++);
+      else if(cmp > 0) exch(A,i;gt--);
+    }
+    sort(A,lo,lt-1);
+    sort(A,gt+1,hi);
+  }
+  
+  4> iterative quick sort
+    use stack to store left and right indexes , poll indices from stack to partition()
+    
+  5> quick sort of linkedlist
+    important: use last element as pivotal and compare from beginning.
+              partition: If it's bigger than pivot put it at the end of linkedlist,
+    if it's smaller, keep it stay.
+              recursion: split left from right recusion and link together
+    http://www.geeksforgeeks.org/quicksort-on-singly-linked-list/
+    
+  3. heap sort
 
 1. Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), 
 find the minimum number of conference rooms required.
