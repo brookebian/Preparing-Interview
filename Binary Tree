@@ -1,0 +1,67 @@
+1. perfect tree
+  leaves = 2^(h-1)
+  total = 2^h-1
+2.complete tree(binary heap)
+3.Enumeration of Binary Trees(unlabeled)
+  T(0) = 1  [There is only 1 empty tree]
+  T(1) = 1
+  T(2) = 2
+  T(3) =  T(0)*T(2) + T(1)*T(1) + T(2)*T(0) = 1*2 + 1*1 + 2*1 = 5
+  T(4) =  T(0)*T(3) + T(1)*T(2) + T(2)*T(1) + T(3)*T(0)--->(left*right)
+  
+  T(i-1) represents number of nodes on the left-sub-tree
+  T(n−i-1) represents number of nodes on the right-sub-tree
+  n’th Catalan Number can also be evaluated using direct formula.
+     T(n) = (2n)! / (n+1)!n!
+  Number of Binary Search Trees (BST) with n nodes is also same 
+  The reason for this is simple, in BST also we can make any key as root, If root is i’th key in sorted order, 
+  then i-1 keys can go on one side and (n-i) keys can go on other side.
+4.Tree Traversals
+  1>DFS
+    a>preorder
+    b>inorder
+      b1>
+      b2>
+      b3> threaded traversal
+        void MorrisTraversal(struct tNode *root)
+        {
+          struct tNode *current,*pre;
+         
+          if(root == NULL)
+             return; 
+         
+          current = root;
+          while(current != NULL)
+          {                 
+            if(current->left == NULL)
+            {
+              printf(" %d ", current->data);
+              current = current->right;      
+            }    
+            else
+            {
+              /* Find the inorder predecessor of current */
+              pre = current->left;
+              while(pre->right != NULL && pre->right != current)
+                pre = pre->right;
+         
+              /* Make current as right child of its inorder predecessor */
+              if(pre->right == NULL)
+              {
+                pre->right = current;
+                current = current->left;
+              }
+                     
+              /* Revert the changes made in if part to restore the original 
+                tree i.e., fix the right child of predecssor */   
+              else 
+              {
+                pre->right = NULL;
+                printf(" %d ",current->data);
+                current = current->right;      
+              } /* End of if condition pre->right == NULL */
+            } /* End of if condition current->left == NULL*/
+          } /* End of while */
+        }
+    c>postorder
+  2>BFS
