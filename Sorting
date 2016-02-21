@@ -94,7 +94,26 @@
   
   Sort n numbers in range from 0 to n^2 – 1 in linear time
   http://www.geeksforgeeks.org/sort-n-numbers-range-0-n2-1-linear-time/
+  int exp = 1;
+  if(nums.length < 2) return 0;
+  int m = nums[0];
+  for(int n : nums){ m = Math.max(n,m);}
+  while(m/exp > 0){
+      int[] count = new int[10];
+      for(int n : nums){
+          count[n/exp%10]++;
+      }
+      for(int i = 1; i < 10; i++) count[i] += count[i-1];
+      int[] aux = new int[nums.length];
+         for (int i = nums.length - 1; i >= 0; i--) {
+      aux[--count[(nums[i] / exp) % 10]] = nums[i];
+  }
 
+      for (int i = 0; i < nums.length; i++) {
+      nums[i] = aux[i];
+  }
+      exp *= 10;
+  }
 1. Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), 
 find the minimum number of conference rooms required.
 For example,
